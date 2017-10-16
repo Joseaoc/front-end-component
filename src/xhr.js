@@ -4,12 +4,12 @@ export default class Request {
         this.xhr.open(method, url)
     }    
 
-    // set params(params){
-    //     this.params = params
-    // }
-    // get params(){
-    //     return this.params
-    // }
+    setParams(params){
+         this.params = params
+    }
+    getParams(){
+         return this.params
+    }
 
     setRequestHeader(header, value){
         this.xhr.setRequestHeader(header, value)
@@ -39,10 +39,10 @@ export default class Request {
                 this.xhr.onreadystatechange = () => {
                     if(this.xhr.status == 200 && this.xhr.readyState == 4){
                         console.log("[Request]: Response received")
-                        resolve(this)
+                        resolve(this);
                     }
                 }
-                this.xhr.send(params)
+                this.xhr.send(this.params)
             })
         } else {
             console.log("[Request]: No params in request. Sending... ")
